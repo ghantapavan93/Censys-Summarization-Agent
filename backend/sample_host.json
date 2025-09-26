@@ -1,0 +1,42 @@
+{
+    "ip": "192.168.1.100",
+    "asn": 15169,
+    "asn_name": "GOOGLE",
+    "location": {
+        "country": "United States",
+        "city": "Mountain View",
+        "region": "California"
+    },
+    "services": [
+        {
+            "port": 22,
+            "protocol": "tcp",
+            "service_name": "ssh",
+            "banner": "SSH-2.0-OpenSSH_8.0",
+            "software": "OpenSSH",
+            "version": "8.0"
+        },
+        {
+            "port": 80,
+            "protocol": "tcp",
+            "service_name": "http",
+            "banner": "Apache/2.4.41 (Ubuntu)",
+            "software": "Apache",
+            "version": "2.4.41"
+        },
+        {
+            "port": 443,
+            "protocol": "tcp",
+            "service_name": "https",
+            "banner": "nginx/1.18.0",
+            "software": "nginx",
+            "version": "1.18.0"
+        }
+    ],
+    "last_updated": "2025-09-25T10:30:00Z",
+    "autonomous_system": {
+        "asn": 15169,
+        "name": "GOOGLE",
+        "country_code": "US"
+    }
+}
