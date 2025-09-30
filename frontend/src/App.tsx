@@ -7,6 +7,7 @@ import RewriteDrawer from './components/RewriteDrawer';
 import ChartsPanel from './components/ChartsPanel';
 import ExportModal from './components/ExportModal';
 import { CheckCircle, CircleAlert } from 'lucide-react';
+import { getDemoData } from './lib/demo';
 
 export default function App() {
 	const [resp, setResp] = useState<CensAIResponse | null>(null);
@@ -18,6 +19,10 @@ export default function App() {
 
 	useEffect(() => {
 		fetch('/api/health').then(r => setHealthy(r.ok)).catch(() => setHealthy(false));
+    const url = new URL(window.location.href);
+    if (url.searchParams.get('demo') === '1') {
+      activateDemo();
+    }
 	}, []);
 
 	async function onSummarize(input: SummarizeRequest) {
@@ -43,16 +48,25 @@ export default function App() {
 		} finally { setLoading(false); }
 	}
 
+	function activateDemo() {
+		const { raw, resp } = getDemoData();
+		setRaw(raw);
+		setResp(resp);
+	}
+
 	return (
 		<div className="mx-auto max-w-7xl p-6 space-y-6 text-neutral-200">
-			<header className="flex items-center justify-between">
-				<h1 className="text-2xl font-semibold">Censys Summarizer</h1>
-				{healthy === true ? (
-					<span className="badge badge-green"><CheckCircle size={16}/> Backend OK</span>
-				) : healthy === false ? (
-					<span className="badge badge-red"><CircleAlert size={16}/> Backend Unreachable</span>
-				) : null}
-			</header>
+      <header className="flex items-center justify-between">
+        <h1 className="text-2xl font-semibold">Censys Summarizer</h1>
+        <div className="flex items-center gap-2">
+          {healthy === true ? (
+            <span className="badge badge-green"><CheckCircle size={16}/> Backend OK</span>
+          ) : healthy === false ? (
+            <span className="badge badge-red"><CircleAlert size={16}/> Backend Unreachable</span>
+          ) : null}
+          <button className="btn" onClick={activateDemo}>Demo Preview</button>
+        </div>
+      </header>
 
 			<UploadPanel onSubmit={onSummarize} loading={loading} />
 
