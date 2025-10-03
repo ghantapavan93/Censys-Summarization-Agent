@@ -1,8 +1,13 @@
 # Censys Summarization Agent
 
-An AI-powered, full‑stack application that ingests Censys host data and turns it into analyst‑grade summaries: risks, insights, and next actions. It ships with a modern React UI, a FastAPI backend, optional LLM rewrite, metrics, and a few handy export tools.
+The Censys Summarization Agent is built to do what raw scan data alone cannot: turn noise into knowledge and knowledge into action. Powered by a hybrid of deterministic analytics and AI-driven summarization, it ingests internet-wide host data from Censys and outputs analyst-grade intelligence that is immediately usable for security teams, executives, and automation pipelines alike.
 
-Recruiter view: skim Features, Quick Start, and the End‑to‑End Flow diagram. Engineer view: the Setup, API, and Testing sections are copy‑paste runnable on Windows (PowerShell) and via Docker.
+At its core, it transforms sprawling JSON datasets into crisp narratives: which services are exposed, where the riskiest assets live, and what demands urgent attention. It doesn’t just describe problems — it prioritizes them, cross-references with the CISA Known Exploited Vulnerabilities (KEV) catalog, filters out honeypots and noise, and even suggests next steps to reduce exposure.
+
+On top of that, an optional LLM rewrite engine ensures the output is accessible to a broader audience — distilling complex findings into plain language without sacrificing critical detail. Security leads can share the AI rewrite with non-technical stakeholders, while engineers can dig into the deterministic layer with confidence.
+
+Packaged with a modern React dashboard, a FastAPI backend, built-in observability hooks, and one-click export tools, the agent is designed to feel out-of-the-box but enterprise-ready — equally at home in a SOC workflow, an analyst report, or an automated CI/CD pipeline.
+
 
 ## 🚀 Highlights
 
@@ -45,14 +50,15 @@ Recruiter view: skim Features, Quick Start, and the End‑to‑End Flow diagram.
 ![System architecture](docs/architecture.png)
 -->
 
-<p align="center"><strong> c:\Users\Pavan Kalyan\Downloads\Untitled diagram _ Mermaid Chart-2025-10-03-113206.png  </strong></p>
+<p align="center"><strong> <img width="3840" height="879" alt="Untitled diagram _ Mermaid Chart-2025-10-03-113206" src="https://github.com/user-attachments/assets/aa3f8876-734f-465f-9f4b-aa09c4bc1f66" />
+  </strong></p>
 
-In short
+
 - Deterministic-first: Frontend → FastAPI → Deterministic summarizer → Enrich → Response (JSON + CSV/PDF)
 - AI optional: Deterministic overview → LLM (Ollama/OpenAI) → Guardrails → Merge → Response
 - Observability: Prometheus `/metrics` from validation/summarizer/LLM stages
 
-Note: Keep the diagram 16:9 and ~1200px wide for crisp GitHub rendering. Put the file under `docs/` and update the path above.
+
 
 ---
 
@@ -406,6 +412,28 @@ Tip: the frontend dev server shows a tiny banner with API base and build timesta
 - Deeper KEV/EPSS enrich (per‑CVE drilldowns, time‑to‑exploit overlays)
 - Richer UI interactions (map, topology, diff viewers across snapshots)
 - e2e tests (Playwright) and contract tests for API schemas
+- Reliability, Scale & Observability — Prometheus + OTel, golden tests, perf budgets, trace IDs.
+  Outcome: Prove P95 < 1s on 10k+ services; debug incidents in minutes, not hours.
+- Data Quality & Schema Drift — Versioned schema, tolerant parser, Zod UI validation, review queue.
+  Outcome: Real-world drift absorbed; analysts see clear fix hints instead of hard blockers.
+- Threat Intel Depth (KEV/EPSS/CPE/TLS/CT/BGP) — Per-CVE timelines, exploit-likelihood overlays, cert & route checks.
+  Outcome: Turn CVE sprawl into urgency-ranked, high-signal findings (catch hijacks/mis-issuance).
+- Prioritization Beyond Enumeration — Snapshot diffs, attack-path graphs, patch planner, adaptive scoring.
+  Outcome: A why-this-first queue that collapses the most risk, fastest.
+- Workflow & Closed-Loop Remediation — Jira/ServiceNow, guided fixes, auto-retest, RBAC/SSO, SIEM export.
+  Outcome: Findings → tickets → verified closure with auditable trace-back.
+- AI, Safely — Fact-bounded LLMs, guardrails/evals, multi-model fallback, narrative diffs.
+  Outcome: Executive clarity without hallucinations; fail-closed to deterministic truth.
+  Paid-provider routing — Seamless switch to bets LLMs - OpenAI / Grok / Gemini / Perplexity with env flips; multi-model fallback to Ollama → deterministic.
+  Outcome: Enterprise-grade quality/throughput when needed, zero-cost default otherwise—always safe, never blocking.
+- Cloud & Asset Context — AWS/GCP/Azure ownership, ephemeral tagging, policy engine, geofencing.
+  Outcome: One-click “who owns this?” and enforced must-not-expose rules.
+- Deception & Noise Handling — Honeypot/canary classifier, mass-scan & anomaly detection.
+  Outcome: Honest charts and early warnings on weird management-plane exposure.
+- Enterprise Delivery — Helm, autoscale, blue/green, feature flags, secrets in vault, config-as-code.
+  Outcome: Safe rollouts at scale with zero secret sprawl and fast toggles.
+- Reporting for Every Audience — PDF briefs & scheduled digests; burn-down, MTTR, time-to-fix by BU.
+  Outcome: Leaders see progress at a glance; teams get measurable accountability.
 
 ---
 
