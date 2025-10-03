@@ -1,0 +1,225 @@
+/* Enhanced styles for security risk cards */
+
+/* Critical risk animation and glow effect */
+.risk-critical {
+  animation: critical-pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+@keyframes critical-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.5);
+    transform: scale(1.02);
+  }
+}
+
+/* High risk warning glow */
+.risk-high {
+  box-shadow: 0 0 15px rgba(249, 115, 22, 0.25);
+  animation: high-glow 3s ease-in-out infinite;
+}
+
+@keyframes high-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(249, 115, 22, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(249, 115, 22, 0.4);
+  }
+}
+
+/* Medium risk subtle highlight */
+.risk-medium {
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+  transition: all 0.3s ease;
+}
+
+.risk-medium:hover {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Low risk calm styling */
+.risk-low {
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.15);
+  transition: all 0.3s ease;
+}
+
+.risk-low:hover {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Enhanced button hover effects */
+.enhanced-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.enhanced-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.enhanced-button:hover::before {
+  left: 100%;
+}
+
+/* KEV badge special animation */
+.kev-badge {
+  animation: kev-attention 1.5s ease-in-out infinite;
+  background: linear-gradient(45deg, #7c3aed, #a855f7, #c084fc, #a855f7, #7c3aed);
+  background-size: 300% 300%;
+  animation: kev-gradient 2s ease infinite, kev-bounce 1s ease-in-out infinite;
+}
+
+@keyframes kev-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes kev-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* Enhanced severity badges with better visual hierarchy */
+.severity-critical {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+  animation: critical-badge-pulse 2s ease-in-out infinite;
+}
+
+@keyframes critical-badge-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6); }
+}
+
+.severity-high {
+  background: linear-gradient(135deg, #ea580c, #f97316);
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
+}
+
+.severity-medium {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  box-shadow: 0 4px 10px rgba(217, 119, 6, 0.25);
+}
+
+.severity-low {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+}
+
+/* Improved card hover states */
+.risk-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.risk-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  filter: brightness(1.05);
+}
+
+/* Enhanced typography for risk titles */
+.risk-title {
+  background: linear-gradient(135deg, #1f2937, #374151, #1f2937);
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+  .risk-title {
+    background: linear-gradient(135deg, #f9fafb, #e5e7eb, #f9fafb);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  
+  .risk-card {
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.8), rgba(31, 41, 55, 0.6));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(75, 85, 99, 0.3);
+  }
+}
+
+/* CVSS score visual indicators */
+.cvss-critical { color: #dc2626; font-weight: bold; }
+.cvss-high { color: #ea580c; font-weight: bold; }
+.cvss-medium { color: #d97706; font-weight: semibold; }
+.cvss-low { color: #2563eb; font-weight: medium; }
+
+/* Loading states with better visual feedback */
+.loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Enhanced section headers */
+.section-header {
+  background: linear-gradient(135deg, #ef4444, #f97316);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(239, 68, 68, 0.1);
+}
+
+/* Improved focus states for accessibility */
+.enhanced-button:focus,
+.risk-card:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* Enhanced mute button styling */
+.mute-button {
+  background: linear-gradient(135deg, #eab308, #f59e0b);
+  transition: all 0.3s ease;
+}
+
+.mute-button:hover {
+  background: linear-gradient(135deg, #f59e0b, #eab308);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(234, 179, 8, 0.3);
+}
+
+/* Responsive enhancements */
+@media (max-width: 768px) {
+  .risk-card {
+    margin-bottom: 1rem;
+  }
+  
+  .enhanced-button {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .severity-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+  }
+}

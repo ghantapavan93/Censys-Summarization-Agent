@@ -1,0 +1,55 @@
+{
+  "count": 3,
+  "summaries": [
+    {
+      "ip": "192.168.1.100",
+      "summary": "Web server with both Apache (port 80) and nginx (port 443) running. SSH service available on port 22. SSL certificate present for HTTPS. Mix of different web server software suggests potential misconfiguration or proxy setup. Standard web services with secure remote access.",
+      "severity_hint": "MEDIUM"
+    },
+    {
+      "ip": "10.0.0.50",
+      "summary": "Database and FTP server combination. MySQL database on port 3306 with ProFTPD file transfer service on port 21. Both services are commonly targeted by attackers. No apparent web services or encryption. Consider restricting database access and securing FTP connections.",
+      "severity_hint": "HIGH"
+    },
+    {
+      "ip": "172.16.0.200",
+      "summary": "Email and application server. Postfix SMTP on port 25, Dovecot IMAPS on port 993 with SSL, and Apache Tomcat on port 8080. Well-configured email services with encryption. Application server on non-standard port may need additional security review.",
+      "severity_hint": "LOW"
+    }
+  ],
+  "insights": {
+    "top_ports": [
+      {"value": "80", "count": 1},
+      {"value": "443", "count": 1},
+      {"value": "22", "count": 1},
+      {"value": "21", "count": 1},
+      {"value": "3306", "count": 1},
+      {"value": "25", "count": 1},
+      {"value": "993", "count": 1},
+      {"value": "8080", "count": 1}
+    ],
+    "top_protocols": [
+      {"value": "tcp", "count": 8}
+    ],
+    "top_software": [
+      {"value": "Apache Software Foundation:Apache HTTP Server:2.4.41", "count": 1},
+      {"value": "F5 Inc.:nginx:1.18.0", "count": 1},
+      {"value": "OpenBSD:OpenSSH:8.0", "count": 1},
+      {"value": "ProFTPD Project:ProFTPD:1.3.6", "count": 1},
+      {"value": "Oracle Corporation:MySQL:5.7.30", "count": 1},
+      {"value": "Wietse Venema:Postfix:3.4.13", "count": 1},
+      {"value": "Timo Sirainen:Dovecot:2.3.7", "count": 1},
+      {"value": "Apache Software Foundation:Apache Tomcat:9.0.37", "count": 1}
+    ],
+    "top_asns": [
+      {"value": "15169", "count": 1},
+      {"value": "16509", "count": 1},
+      {"value": "2516", "count": 1}
+    ],
+    "countries": [
+      {"value": "United States", "count": 1},
+      {"value": "Germany", "count": 1},
+      {"value": "Japan", "count": 1}
+    ]
+  }
+}

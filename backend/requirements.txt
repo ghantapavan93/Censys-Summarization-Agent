@@ -1,6 +1,26 @@
-fastapi==0.115.0
-uvicorn[standard]==0.30.6
-pydantic==2.9.2
-openai>=1.40.0
-httpx==0.27.2
-pytest==8.3.3
+﻿fastapi==0.117.1
+uvicorn==0.30.6
+pydantic==2.11.1
+pydantic-settings==2.4.0
+
+# Core utils
+requests>=2.32.0
+python-dotenv>=1.0.0
+
+# Retrieval and analytics
+scikit-learn==1.5.2
+numpy>=1.26
+pandas>=2.2
+
+# LLM backends (choose one at runtime)
+transformers>=4.44
+torch>=2.4
+openai>=1.51
+ollama>=0.3.3
+
+# Metrics
+prometheus-client>=0.20
+orjson>=3.10
+
+# Optional: PDF export (fallbacks to text if missing)
+reportlab>=4.2

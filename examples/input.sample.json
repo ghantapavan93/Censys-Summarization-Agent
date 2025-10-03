@@ -1,0 +1,160 @@
+[
+  {
+    "ip": "192.168.1.100",
+    "location": {
+      "country": "United States",
+      "city": "Mountain View",
+      "province": "California"
+    },
+    "autonomous_system": {
+      "asn": 15169,
+      "name": "GOOGLE",
+      "description": "Google LLC",
+      "country_code": "US"
+    },
+    "services": [
+      {
+        "port": 22,
+        "protocol": "tcp",
+        "banner": "SSH-2.0-OpenSSH_8.0",
+        "software": [
+          {
+            "product": "OpenSSH",
+            "vendor": "OpenBSD",
+            "version": "8.0"
+          }
+        ],
+        "labels": ["ssh", "remote_access"]
+      },
+      {
+        "port": 80,
+        "protocol": "tcp",
+        "banner": "Apache/2.4.41 (Ubuntu)",
+        "software": [
+          {
+            "product": "Apache HTTP Server",
+            "vendor": "Apache Software Foundation",
+            "version": "2.4.41"
+          }
+        ],
+        "labels": ["http", "web_server"]
+      },
+      {
+        "port": 443,
+        "protocol": "tcp",
+        "banner": "nginx/1.18.0",
+        "cert": {
+          "fingerprint_sha256": "a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456"
+        },
+        "software": [
+          {
+            "product": "nginx",
+            "vendor": "F5 Inc.",
+            "version": "1.18.0"
+          }
+        ],
+        "labels": ["https", "web_server", "ssl"]
+      }
+    ]
+  },
+  {
+    "ip": "10.0.0.50",
+    "location": {
+      "country": "Germany",
+      "city": "Frankfurt",
+      "province": "Hesse"
+    },
+    "autonomous_system": {
+      "asn": 16509,
+      "name": "AMAZON-02",
+      "description": "Amazon.com, Inc.",
+      "country_code": "US"
+    },
+    "services": [
+      {
+        "port": 21,
+        "protocol": "tcp",
+        "banner": "220 ProFTPD 1.3.6 Server ready.",
+        "software": [
+          {
+            "product": "ProFTPD",
+            "vendor": "ProFTPD Project",
+            "version": "1.3.6"
+          }
+        ],
+        "labels": ["ftp", "file_transfer"]
+      },
+      {
+        "port": 3306,
+        "protocol": "tcp",
+        "banner": "MySQL 5.7.30",
+        "software": [
+          {
+            "product": "MySQL",
+            "vendor": "Oracle Corporation",
+            "version": "5.7.30"
+          }
+        ],
+        "labels": ["mysql", "database"]
+      }
+    ]
+  },
+  {
+    "ip": "172.16.0.200",
+    "location": {
+      "country": "Japan",
+      "city": "Tokyo",
+      "province": "Tokyo"
+    },
+    "autonomous_system": {
+      "asn": 2516,
+      "name": "KDDI",
+      "description": "KDDI CORPORATION",
+      "country_code": "JP"
+    },
+    "services": [
+      {
+        "port": 25,
+        "protocol": "tcp",
+        "banner": "220 mail.example.com ESMTP Postfix",
+        "software": [
+          {
+            "product": "Postfix",
+            "vendor": "Wietse Venema",
+            "version": "3.4.13"
+          }
+        ],
+        "labels": ["smtp", "email"]
+      },
+      {
+        "port": 993,
+        "protocol": "tcp",
+        "banner": "* OK [CAPABILITY IMAP4rev1] Dovecot ready.",
+        "cert": {
+          "fingerprint_sha256": "b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef1234567"
+        },
+        "software": [
+          {
+            "product": "Dovecot",
+            "vendor": "Timo Sirainen",
+            "version": "2.3.7"
+          }
+        ],
+        "labels": ["imaps", "email", "ssl"]
+      },
+      {
+        "port": 8080,
+        "protocol": "tcp",
+        "banner": "HTTP/1.1 200 OK Server: Apache Tomcat/9.0.37",
+        "software": [
+          {
+            "product": "Apache Tomcat",
+            "vendor": "Apache Software Foundation",
+            "version": "9.0.37"
+          }
+        ],
+        "labels": ["http", "application_server"]
+      }
+    ]
+  }
+]

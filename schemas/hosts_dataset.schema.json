@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/hosts_dataset.schema.json",
+  "title": "Hosts Dataset",
+  "type": "object",
+  "required": ["metadata", "hosts"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["description", "created_at", "data_sources", "hosts_count", "ips_analyzed"],
+      "properties": {
+        "schema_version": {"type": ["string", "null"]},
+        "description": {"type": "string"},
+        "created_at": {"type": "string"},
+        "seen_at": {"type": ["string", "null"]},
+        "data_sources": {"type": "array", "items": {"type": "string"}},
+        "hosts_count": {"type": "integer"},
+        "ips_analyzed": {"type": "array", "items": {"type": "string"}},
+        "rollups": {"type": ["object", "null"]}
+      },
+      "additionalProperties": true
+    },
+    "hosts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["ip", "services"],
+        "properties": {
+          "ip": {"type": "string"},
+          "location": {"type": ["object", "null"]},
+          "autonomous_system": {"type": ["object", "null"]},
+          "dns": {"type": ["object", "null"]},
+          "operating_system": {"type": ["object", "null"]},
+          "services": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "port": {"type": ["integer", "string"]},
+                "protocol": {"type": ["string", "null"]},
+                "service_name": {"type": ["string", "null"]},
+                "banner": {"type": ["string", "null"]},
+                "software": {"type": ["array", "null"]},
+                "vulnerabilities": {"type": ["array", "null"]},
+                "tls_enabled": {"type": ["boolean", "null"]},
+                "certificate": {"type": ["object", "null"]},
+                "authentication_required": {"type": ["boolean", "null"]},
+                "error_message": {"type": ["string", "null"]},
+                "response_details": {"type": ["object", "null"]},
+                "malware_detected": {"type": ["object", "null"]},
+                "access_restricted": {"type": ["boolean", "null"]}
+              },
+              "additionalProperties": true
+            }
+          },
+          "threat_intelligence": {"type": ["object", "null"]},
+          "derived": {"type": ["object", "null"]},
+          "risk": {"type": ["object", "null"]}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

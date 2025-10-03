@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  },
+  "scripts": {
+    "dev:backend": "set PYTHONPATH=%CD%&& .venv\\Scripts\\python.exe -m uvicorn backend.app:app --host 127.0.0.1 --port 8000 --reload --reload-dir backend",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev": "concurrently -n backend,frontend -c auto \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend:quiet": "set PYTHONPATH=%CD%&& .venv\\Scripts\\python.exe -m uvicorn backend.app:app --host 127.0.0.1 --port 8000 --reload --log-level warning --reload-dir backend"
+  }
+}

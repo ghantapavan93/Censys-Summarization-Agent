@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+body { background: #0b0f14; }
+
+/* App shells */
+.app-wrap { @apply mx-auto max-w-7xl p-6 space-y-6; }
+.card { @apply bg-surface border border-border rounded-2xl p-5 shadow-soft; }
+.btn  { @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-[#16191f] hover:bg-[#1b1f26] border border-border transition; }
+.btn-primary { @apply bg-accent hover:bg-accent2 text-black border-transparent; }
+.badge { @apply inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium border border-border bg-[#0d1116]; }
+.badge-ok { @apply bg-[#0c2a1a] text-emerald-200 border-emerald-900/70; }
+.badge-warn { @apply bg-[#2b1a0d] text-amber-200 border-amber-900/60; }
+.badge-crit { @apply bg-[#300a0a] text-rose-200 border-rose-900/60; }
+.input { @apply bg-[#0b0f14] border border-border rounded-xl text-sm text-neutral-200 placeholder:text-neutral-500 outline-none focus:ring-2 focus:ring-accent focus:border-accent; }
+
+/* Loading overlay */
+.loading-overlay {
+	@apply fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm;
+}
+.spinner {
+	@apply h-8 w-8 border-2 rounded-full border-neutral-400 border-t-accent animate-spin;
+}
+
+/* Simple tooltip */
+.tooltip {
+	@apply absolute z-20 -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs bg-[#0b0f14] border border-border rounded-md px-2 py-1 shadow-soft;
+}
+
+/* Toasts */
+.toast-viewport {
+	@apply fixed z-50 bottom-4 right-4 flex flex-col gap-2;
+}
+.toast {
+	@apply bg-surface border border-border rounded-xl px-4 py-3 text-sm shadow-soft;
+}
+.toast-success { @apply border-emerald-900/40; }
+.toast-error { @apply border-rose-900/40; }
+.toast-info { @apply border-[#374151]; }

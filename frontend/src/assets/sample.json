@@ -1,0 +1,11 @@
+{
+  "metadata": { "description": "Sample dataset", "hosts_count": 1 },
+  "hosts": [
+    {
+      "ip": "127.0.0.1",
+      "services": [
+        { "port": 22, "protocol": "SSH", "software": [{ "product": "openssh", "version": "8.4" }] }
+      ]
+    }
+  ]
+}

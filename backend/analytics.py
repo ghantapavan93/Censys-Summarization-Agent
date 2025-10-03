@@ -1,29 +1,60 @@
 from collections import Counter
 from typing import List, Dict
-from schemas import Host, DatasetInsights
 
-def _top_k(counter, k=10) -> List[Dict[str, int]]:
-    return [{"value": v, "count": c} for v, c in counter.most_common(k)]
+from .schemas import Host, DatasetInsights
 
-def derive_dataset_insights(hosts: List[Host]) -> DatasetInsights:
-    ports, protos, sw, asns, countries = Counter(), Counter(), Counter(), Counter(), Counter()
-    for h in hosts:
-        if h.location and h.location.country:
-            countries[h.location.country] += 1
-        if h.autonomous_system and h.autonomous_system.asn:
-            asns[str(h.autonomous_system.asn)] += 1
-        for s in (h.services or []):
-            if s.port: ports[str(s.port)] += 1
-            if s.protocol: protos[s.protocol] += 1
-            if s.software:
-                for soft in s.software:
-                    key = ":".join([x for x in [soft.vendor, soft.product, soft.version] if x])
-                    if key:
-                        sw[key] += 1
+
+def _top_k_dict(counter: Counter, k: int = 10) -> List[Dict[str, int]]:
+    """Convert a Counter into a list of single-key dicts sorted by count desc."""
+    return [{str(value): count} for value, count in counter.most_common(k)]
+
+
+def generate_insights(hosts: List[Host], k: int = 10) -> DatasetInsights:
+    """Aggregate dataset-wide insights from a list of Host models.
+
+    Returns lists of single-key dictionaries to match tests' expected shape.
+    """
+    ports: Counter = Counter()
+    protocols: Counter = Counter()
+    software: Counter = Counter()
+    asns: Counter = Counter()
+    countries: Counter = Counter()
+
+    for h in hosts or []:
+        # Countries
+        if getattr(h, "location", None) and getattr(h.location, "country", None):
+            countries[str(h.location.country)] += 1
+
+        # ASNs: prefer name if present, else ASN number
+        if getattr(h, "autonomous_system", None):
+            name = getattr(h.autonomous_system, "name", None)
+            asn_no = getattr(h.autonomous_system, "asn", None)
+            if name:
+                asns[str(name)] += 1
+            elif asn_no is not None:
+                asns[str(asn_no)] += 1
+
+        # Services
+        for s in getattr(h, "services", []) or []:
+            if getattr(s, "port", None) is not None:
+                ports[str(s.port)] += 1
+            if getattr(s, "protocol", None):
+                # normalize protocol to lower-case for consistent counting
+                protocols[str(s.protocol).lower()] += 1
+            if getattr(s, "software", None):
+                for soft in s.software or []:
+                    prod = getattr(soft, "product", None)
+                    if prod:
+                        software[str(prod)] += 1
+
     return DatasetInsights(
-        top_ports=_top_k(ports),
-        top_protocols=_top_k(protos),
-        top_software=_top_k(sw),
-        top_asns=_top_k(asns),
-        countries=_top_k(countries),
+        top_ports=_top_k_dict(ports, k),
+        top_protocols=_top_k_dict(protocols, k),
+        top_software=_top_k_dict(software, k),
+        top_asns=_top_k_dict(asns, k),
+        countries=_top_k_dict(countries, k),
     )
+
+
+# Backwards-compat helper name used by older imports
+derive_dataset_insights = generate_insights

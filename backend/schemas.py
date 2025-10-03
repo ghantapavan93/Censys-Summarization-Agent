@@ -1,5 +1,6 @@
+from enum import Enum
 from pydantic import BaseModel, Field
-from typing import List, Optional, Dict, Any, Literal
+from typing import List, Optional, Dict, Any
 
 class CertRef(BaseModel):
     fingerprint_sha256: Optional[str] = None
@@ -29,25 +30,33 @@ class Location(BaseModel):
     province: Optional[str] = None
 
 class Host(BaseModel):
-    ip: str
+    # Require non-empty IP string
+    ip: str = Field(..., min_length=1)
     location: Optional[Location] = None
     autonomous_system: Optional[ASN] = None
     services: Optional[List[Service]] = Field(default_factory=list)
 
+class Severity(str, Enum):
+    CRITICAL = "CRITICAL"
+    HIGH = "HIGH"
+    MEDIUM = "MEDIUM"
+    LOW = "LOW"
+    INFO = "INFO"
+    UNKNOWN = "UNKNOWN"
+
+class HostSummary(BaseModel):
+    ip: str
+    summary: str
+    # Constrain to a fixed set of values; default to UNKNOWN when not provided
+    severity_hint: Severity = Severity.UNKNOWN
+
 class DatasetInsights(BaseModel):
+    # Each list item is a single-key dictionary mapping label -> count
     top_ports: List[Dict[str, int]]
     top_protocols: List[Dict[str, int]]
     top_software: List[Dict[str, int]]
     top_asns: List[Dict[str, int]]
     countries: List[Dict[str, int]]
-
-class HostSummary(BaseModel):
-    ip: str
-    summary: str
-    severity_hint: Literal["CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO", "UNKNOWN"] = "UNKNOWN"
-
-# Backward-compat alias for modules that import `Summary`
-Summary = HostSummary
 
 class SummaryResponse(BaseModel):
     count: int

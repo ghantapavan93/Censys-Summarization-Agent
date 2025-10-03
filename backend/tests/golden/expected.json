@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "record_count": 8
+  },
+  "risk_matrix": {
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "viz_payload": {
+    "top_ports": {
+      "22": 1,
+      "80": 1,
+      "443": 1,
+      "21": 1,
+      "3306": 1,
+      "25": 1,
+      "993": 1,
+      "8080": 1
+    },
+    "histograms": {
+      "protocols": {
+        "tcp": 8
+      },
+      "products": {
+        "OpenSSH": 1,
+        "Apache HTTP Server": 1,
+        "nginx": 1,
+        "ProFTPD": 1,
+        "MySQL": 1,
+        "Postfix": 1,
+        "Dovecot": 1,
+        "Apache Tomcat": 1
+      },
+      "countries": {
+        "US": 3,
+        "JP": 3,
+        "DE": 2
+      }
+    }
+  }
+}

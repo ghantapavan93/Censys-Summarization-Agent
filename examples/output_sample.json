@@ -1,0 +1,48 @@
+{
+  "count": 3,
+  "summaries": [
+    {
+      "ip": "8.8.8.8",
+      "surface": "DNS server with standard ports open",
+      "risk": "Low",
+      "notes": "Public DNS resolver service"
+    },
+    {
+      "ip": "1.1.1.1", 
+      "surface": "Web and DNS services",
+      "risk": "Low",
+      "notes": "Cloudflare public DNS and CDN"
+    },
+    {
+      "ip": "192.168.1.100",
+      "surface": "Multiple services on common ports",
+      "risk": "Medium",
+      "notes": "Private network host with various services"
+    }
+  ],
+  "insights": {
+    "top_ports": [
+      {"value": "80", "count": 2},
+      {"value": "443", "count": 2},
+      {"value": "53", "count": 2}
+    ],
+    "top_protocols": [
+      {"value": "HTTP", "count": 2},
+      {"value": "DNS", "count": 2},
+      {"value": "HTTPS", "count": 2}
+    ],
+    "top_software": [
+      {"value": "nginx", "count": 1},
+      {"value": "Apache", "count": 1},
+      {"value": "BIND", "count": 1}
+    ],
+    "top_asns": [
+      {"value": "AS15169", "count": 1},
+      {"value": "AS13335", "count": 1}
+    ],
+    "countries": [
+      {"value": "US", "count": 2},
+      {"value": "Unknown", "count": 1}
+    ]
+  }
+}
